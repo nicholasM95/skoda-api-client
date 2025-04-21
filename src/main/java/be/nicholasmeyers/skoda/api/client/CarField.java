@@ -27,17 +27,17 @@ public class CarField {
     /**
      * Constructs a new CarField object with the given attributes.
      *
-     * @param id                The unique identifier for this data field.
-     * @param tsCarSentUtc      The UTC timestamp when the car data was sent.
-     * @param tsCarSent         The timestamp when the car data was sent.
-     * @param tsCarCaptured     The timestamp when the car data was captured.
-     * @param tsTssReceivedUtc  The UTC timestamp when TSS data was received.
-     * @param milCarCaptured    The mileage at the time the car data was captured.
-     * @param milCarSent        The mileage at the time the car data was sent.
-     * @param value             The value associated with this field.
-     * @param unit              The unit of the value (e.g., km, miles).
-     * @param textId            A text identifier related to the car field.
-     * @param picId             A picture identifier related to the car field.
+     * @param id               The unique identifier for this data field.
+     * @param tsCarSentUtc     The UTC timestamp when the car data was sent.
+     * @param tsCarSent        The timestamp when the car data was sent.
+     * @param tsCarCaptured    The timestamp when the car data was captured.
+     * @param tsTssReceivedUtc The UTC timestamp when TSS data was received.
+     * @param milCarCaptured   The mileage at the time the car data was captured.
+     * @param milCarSent       The mileage at the time the car data was sent.
+     * @param value            The value associated with this field.
+     * @param unit             The unit of the value (e.g., km, miles).
+     * @param textId           A text identifier related to the car field.
+     * @param picId            A picture identifier related to the car field.
      */
     CarField(String id, String tsCarSentUtc, String tsCarSent, String tsCarCaptured,
              String tsTssReceivedUtc, Integer milCarCaptured, Integer milCarSent, String value, String unit,

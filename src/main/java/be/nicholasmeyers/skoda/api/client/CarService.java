@@ -1,8 +1,25 @@
 package be.nicholasmeyers.skoda.api.client;
 
 import be.nicholasmeyers.skoda.ApiException;
-import be.nicholasmeyers.skoda.client.*;
-import be.nicholasmeyers.skoda.client.resource.*;
+import be.nicholasmeyers.skoda.client.CoolingApi;
+import be.nicholasmeyers.skoda.client.FlashApi;
+import be.nicholasmeyers.skoda.client.HonkApi;
+import be.nicholasmeyers.skoda.client.LocationApi;
+import be.nicholasmeyers.skoda.client.RequestApi;
+import be.nicholasmeyers.skoda.client.StatusApi;
+import be.nicholasmeyers.skoda.client.VentilatorApi;
+import be.nicholasmeyers.skoda.client.resource.CoolingWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.DataWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.FieldWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.FlashWebRequestResource;
+import be.nicholasmeyers.skoda.client.resource.HonkWebRequestResource;
+import be.nicholasmeyers.skoda.client.resource.LocationWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.ReportWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.RequestWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.StatusWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.TimerWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.VentilatorWebRequestResource;
+import be.nicholasmeyers.skoda.client.resource.VentilatorWebResponseResource;
 
 /**
  * Provides services to interact with a car, including controlling features such as cooling, flashing, honking,
@@ -230,7 +247,8 @@ public class CarService {
      * @return A {@link CarReport} object representing the mapped report data.
      */
     private CarReport mapToCarReport(ReportWebResponseResource report) {
-        return new CarReport(report.getClimatisationState(), report.getClimatisationDuration(), report.getRemainingClimateTime(), report.getClimateStatusCode());
+        return new CarReport(report.getClimatisationState(), report.getClimatisationDuration(), report.getRemainingClimateTime(),
+                report.getClimateStatusCode());
     }
 
     /**

@@ -30,17 +30,17 @@ public class CarCoolingInfo {
     /**
      * Constructs a new {@link CarCoolingInfo} object with the specified parameters.
      *
-     * @param instrumentClusterTime The time displayed on the instrument cluster.
+     * @param instrumentClusterTime   The time displayed on the instrument cluster.
      * @param carCapturedUTCTimestamp The UTC timestamp when the car's data was captured.
-     * @param vehicleParkingClock The time from the vehicle's parking clock.
-     * @param outdoorTempValid A flag indicating whether the outdoor temperature is valid.
-     * @param outdoorTemp The outdoor temperature in Celsius.
-     * @param temperatureTime The time the temperature data was recorded.
-     * @param climatisationDuration The duration of the vehicle's climatisation (in seconds).
-     * @param startMode The start mode of the vehicle (e.g., manual, automatic).
-     * @param heaterMode The heater mode (e.g., ON, OFF).
-     * @param report A {@link CarReport} object containing any associated report data.
-     * @param timers A list of {@link CarCoolingTimer} objects representing the timers associated with the cooling system.
+     * @param vehicleParkingClock     The time from the vehicle's parking clock.
+     * @param outdoorTempValid        A flag indicating whether the outdoor temperature is valid.
+     * @param outdoorTemp             The outdoor temperature in Celsius.
+     * @param temperatureTime         The time the temperature data was recorded.
+     * @param climatisationDuration   The duration of the vehicle's climatisation (in seconds).
+     * @param startMode               The start mode of the vehicle (e.g., manual, automatic).
+     * @param heaterMode              The heater mode (e.g., ON, OFF).
+     * @param report                  A {@link CarReport} object containing any associated report data.
+     * @param timers                  A list of {@link CarCoolingTimer} objects representing the timers associated with the cooling system.
      */
     CarCoolingInfo(String instrumentClusterTime, String carCapturedUTCTimestamp,
                    String vehicleParkingClock, String outdoorTempValid,

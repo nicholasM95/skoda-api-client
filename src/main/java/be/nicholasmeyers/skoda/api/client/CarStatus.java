@@ -18,7 +18,7 @@ public class CarStatus {
     /**
      * Constructs a new {@link CarStatus} object with the specified VIN and car data.
      *
-     * @param vin The Vehicle Identification Number (VIN) of the car.
+     * @param vin  The Vehicle Identification Number (VIN) of the car.
      * @param data A list of {@link CarData} objects containing various car data fields.
      */
     CarStatus(String vin, List<CarData> data) {
@@ -52,7 +52,6 @@ public class CarStatus {
      * </p>
      *
      * @return An {@link Integer} representing the kilometers left by the car.
-     * @throws NoSuchElementException if the kilometer data or field cannot be found.
      */
     public Integer getKilometer() {
         CarData data = getData().stream()
