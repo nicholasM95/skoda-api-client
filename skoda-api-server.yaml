@@ -1,0 +1,863 @@
+openapi: 3.0.3
+info:
+  title: Skoda API Server
+  version: 1.0.0
+servers:
+  - url: https://api-skoda.nicholasmeyers.be
+tags:
+  - name: cooling
+    description: cooling
+  - name: flash
+    description: flash
+  - name: honk
+    description: honk
+  - name: location
+    description: location
+  - name: request
+    description: request
+  - name: role
+    description: role
+  - name: statistics
+    description: statistics
+  - name: status
+    description: status
+  - name: vehicle
+    description: vehicle
+  - name: ventilator
+    description: ventilator
+paths:
+  /cooling/{vin}:
+    get:
+      tags:
+        - cooling
+      operationId: getCoolingStatus
+      summary: Get cooling status
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      responses:
+        200:
+          description: Request successfully processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoolingWebResponseResource'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /flash/{vin}:
+    post:
+      tags:
+        - flash
+      operationId: flash
+      summary: Flash
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlashWebRequestResource'
+      responses:
+        201:
+          description: Request successfully processed
+          headers:
+            Location:
+              description: The location where the resource was created
+              schema:
+                type: string
+                example: /request/QMGAG8BEQSY003476/2342
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlashWebResponseResource'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /honk/{vin}:
+    post:
+      tags:
+        - honk
+      operationId: honk
+      summary: Honk
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HonkWebRequestResource'
+      responses:
+        201:
+          description: Request successfully processed
+          headers:
+            Location:
+              description: The location where the resource was created
+              schema:
+                type: string
+                example: /request/QMGAG8BEQSY003476/2342
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HonkWebResponseResource'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /location/{vin}:
+    get:
+      tags:
+        - location
+      operationId: getLocation
+      summary: Get location
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      responses:
+        200:
+          description: Request successfully processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationWebResponseResource'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /request/{vin}/{id}:
+    get:
+      tags:
+        - request
+      operationId: getRequest
+      summary: Get request by id
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+        - name: id
+          in: path
+          description: request id
+          required: true
+          schema:
+            type: string
+            example: 1234
+      responses:
+        200:
+          description: Request successfully processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestWebResponseResource'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /role/{vin}:
+    get:
+      tags:
+        - role
+      operationId: getRole
+      summary: Get role
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      responses:
+        200:
+          description: Request successfully processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleWebResponseResource'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /statistics/{vin}:
+    get:
+      tags:
+        - statistics
+      operationId: getStatistics
+      summary: Get statistics
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      responses:
+        200:
+          description: Request successfully processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatisticsWebResponseResource'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /status/{vin}:
+    get:
+      tags:
+        - status
+      operationId: getStatus
+      summary: Get status
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      responses:
+        200:
+          description: Request successfully processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusWebResponseResource'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /vehicle:
+    get:
+      tags:
+        - vehicle
+      operationId: findAllVehicles
+      summary: Find all vehicles
+      responses:
+        200:
+          description: Request successfully processed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VehicleWebResponseResource'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /ventilator/{vin}/start:
+    post:
+      tags:
+        - ventilator
+      operationId: startVentilator
+      summary: Start ventilator
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VentilatorWebRequestResource'
+      responses:
+        201:
+          description: Request successfully processed
+          headers:
+            Location:
+              description: The location where the resource was created
+              schema:
+                type: string
+                example: /request/QMGAG8BEQSY003476/2342
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VentilatorWebResponseResource'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /ventilator/{vin}/stop:
+    post:
+      tags:
+        - ventilator
+      operationId: stopVentilator
+      summary: Stop ventilator
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VentilatorWebRequestResource'
+      responses:
+        201:
+          description: Request successfully processed
+          headers:
+            Location:
+              description: The location where the resource was created
+              schema:
+                type: string
+                example: /request/QMGAG8BEQSY003476/2342
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VentilatorWebResponseResource'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+components:
+  schemas:
+    CoolingWebResponseResource:
+      required:
+        - instrumentClusterTime
+        - carCapturedUTCTimestamp
+        - vehicleParkingClock
+        - outdoorTempValid
+        - outdoorTemp
+        - temperatureTime
+        - climatisationDuration
+        - startMode
+        - heaterMode
+        - report
+        - timers
+      type: object
+      properties:
+        instrumentClusterTime:
+          type: string
+          description: instrument cluster time
+          example: 2024-1O-10T10:10:10
+        carCapturedUTCTimestamp:
+          type: string
+          description: car captured utc timestamp
+          example: 2024-1O-10T10:10:10
+        vehicleParkingClock:
+          type: string
+          description: vehicle parking clock
+          example: 2024-1O-10T10:10:10
+        outdoorTempValid:
+          type: string
+          description: outdoor temp valid
+          example: valid
+        outdoorTemp:
+          type: integer
+          format: int32
+          description: outdoor temp
+          example: 2900
+        temperatureTime:
+          type: string
+          description: temperature time
+          example: 2024-1O-10T10:10:10
+        climatisationDuration:
+          type: integer
+          format: int32
+          description: climatisation duration
+          example: 10
+        startMode:
+          type: string
+          description: start mode
+          example: invalid
+        heaterMode:
+          type: string
+          description: heater mode
+          example: economy
+        report:
+          $ref: '#/components/schemas/ReportWebResponseResource'
+        timers:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimerWebResponseResource'
+    ReportWebResponseResource:
+      required:
+        - climatisationState
+        - climatisationDuration
+        - remainingClimateTime
+        - climateStatusCode
+      type: object
+      properties:
+        climatisationState:
+          type: string
+          description: climatisation state
+          example: off
+        climatisationDuration:
+          type: integer
+          format: int32
+          description: climatisation duration
+          example: 10
+        remainingClimateTime:
+          type: integer
+          format: int32
+          description: remaining climate time
+          example: 0
+        climateStatusCode:
+          type: integer
+          format: int32
+          description: climateStatusCode
+          example: 0
+    TimerWebResponseResource:
+      required:
+        - id
+        - heaterMode
+        - timerProgrammedStatus
+        - weekday
+        - hour
+        - minute
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: id of the timer
+          example: 1
+        heaterMode:
+          type: string
+          description: heater mode
+          example: economy
+        timerProgrammedStatus:
+          type: boolean
+          description: timer programmed status
+          example: false
+        weekday:
+          type: integer
+          format: int32
+          description: weekday
+          example: 127
+        hour:
+          type: integer
+          format: int32
+          description: hour
+          example: 14
+        minute:
+          type: integer
+          format: int32
+          description: minute
+          example: 30
+    FlashWebRequestResource:
+      required:
+        - latitude
+        - longitude
+        - duration
+      type: object
+      properties:
+        latitude:
+          type: integer
+          format: int32
+          description: latitude
+          example: 17292954
+        longitude:
+          type: integer
+          format: int32
+          description: longitude
+          example: 287205
+        duration:
+          type: integer
+          format: int32
+          description: duration
+          example: 20
+    FlashWebResponseResource:
+      required:
+        - id
+        - status
+        - duration
+        - lastUpdated
+      type: object
+      properties:
+        id:
+          type: string
+          description: id
+          example: 21
+        status:
+          type: string
+          description: status
+          example: REQUEST_IN_PROGRESS
+        duration:
+          type: integer
+          format: int32
+          description: duration
+          example: 20
+        lastUpdated:
+          type: string
+          description: last updated
+          example: 2024-1O-10T10:10:10
+    HonkWebRequestResource:
+      required:
+        - latitude
+        - longitude
+        - duration
+      type: object
+      properties:
+        latitude:
+          type: integer
+          format: int32
+          description: latitude
+          example: 17292954
+        longitude:
+          type: integer
+          format: int32
+          description: longitude
+          example: 287205
+        duration:
+          type: integer
+          format: int32
+          description: duration
+          example: 20
+    HonkWebResponseResource:
+      required:
+        - id
+        - status
+        - duration
+        - lastUpdated
+      type: object
+      properties:
+        id:
+          type: string
+          description: id
+          example: 21
+        status:
+          type: string
+          description: status
+          example: REQUEST_IN_PROGRESS
+        duration:
+          type: integer
+          format: int32
+          description: duration
+          example: 20
+        lastUpdated:
+          type: string
+          description: last updated
+          example: 2024-1O-10T10:10:10
+    LocationWebResponseResource:
+      required:
+        - latitude
+        - longitude
+        - parkingTime
+      type: object
+      properties:
+        latitude:
+          type: integer
+          format: int32
+          description: latitude
+          example: 17292954
+        longitude:
+          type: integer
+          format: int32
+          description: longitude
+          example: 287205
+        parkingTime:
+          type: string
+          description: parking time
+          example: 2024-1O-10T10:10:10
+    RequestWebResponseResource:
+      required:
+        - vin
+        - status
+      type: object
+      properties:
+        vin:
+          type: string
+          description: vin of the vehicle
+          example: QMGAG8BEQSY003476
+        status:
+          type: string
+          description: status
+          example: ok
+    RoleWebResponseResource:
+      required:
+        - services
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    StatisticsWebResponseResource:
+      required:
+        - overallMileage
+        - tripType
+        - averageFuelConsumption
+        - travelTime
+        - startMileage
+        - tripId
+        - averageSpeed
+        - mileage
+        - timestamp
+        - reportReason
+      type: object
+      properties:
+        overallMileage:
+          type: integer
+          format: int32
+          description: overall mileage
+          example: 35656
+        tripType:
+          type: string
+          description: trip type
+          example: shortTerm
+        averageFuelConsumption:
+          type: integer
+          format: int32
+          description: average full consumption
+          example: 96
+        travelTime:
+          type: integer
+          format: int32
+          description: travel time
+          example: 38
+        startMileage:
+          type: integer
+          format: int32
+          description: start mileage
+          example: 54
+        tripId:
+          type: string
+          description: trip id
+        averageSpeed:
+          type: integer
+          format: int32
+          description: average speed
+          example: 18
+        mileage:
+          type: integer
+          format: int32
+          description: mileage
+          example: 11
+        timestamp:
+          type: string
+          description: timestamp
+          example: 2024-1O-10T10:10:10
+        reportReason:
+          type: string
+          description: report reason
+          example: clamp15off
+    StatusWebResponseResource:
+      required:
+        - vin
+        - data
+      type: object
+      properties:
+        vin:
+          type: string
+          description: vin of the vehicle
+          example: QMGAG8BEQSY003476
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataWebResponseResource'
+    DataWebResponseResource:
+      required:
+        - id
+        - fields
+      type: object
+      properties:
+        id:
+          type: string
+          description: id
+          example: 0x0204040001
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldWebResponseResource'
+    FieldWebResponseResource:
+      required:
+        - id
+        - tsCarSentUtc
+        - tsCarSent
+        - tsCarCaptured
+        - tsTssReceivedUtc
+        - milCarCaptured
+        - milCarSent
+        - value
+        - unit
+        - textId
+        - picId
+      type: object
+      properties:
+        id:
+          type: string
+          description: id
+          example: 0x0101010001
+        tsCarSentUtc:
+          type: string
+          description: ts car sent utc
+          example: 2024-1O-10T10:10:10
+        tsCarSent:
+          type: string
+          description: ts car sent
+          example: 2024-1O-10T10:10:10
+        tsCarCaptured:
+          type: string
+          description: ts car captured
+          example: 2024-1O-10T10:10:10
+        tsTssReceivedUtc:
+          type: string
+          description: ts tss received utc
+          example: 2024-1O-10T10:10:10
+        milCarCaptured:
+          type: integer
+          format: int32
+          description: mil car captured
+          example: 35656
+        milCarSent:
+          type: integer
+          format: int32
+          description: mil car sent
+          example: 35656
+        value:
+          type: string
+          description: value
+          example: echo
+        unit:
+          type: string
+          description: unit
+          example: km
+        textId:
+          type: string
+          description: textId
+          example: interval.oil.distance
+        picId:
+          type: string
+          description: textId
+          example: ICON025_yellow.png
+    VehicleWebResponseResource:
+      required:
+        - id
+        - vin
+        - lastUpdated
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: id of the vehicle
+          example: QMGAG8BEQSY003476
+        vin:
+          type: string
+          description: vin of the vehicle
+          example: QMGAG8BEQSY003476
+        lastUpdated:
+          type: string
+          description: last updated date time of the vehicle
+          example: 2024-1O-10T10:10:10
+        name:
+          type: string
+          description: name of the vehicle
+          example: Skoda octavia
+    VentilatorWebRequestResource:
+      required:
+        - duration
+        - pin
+      type: object
+      properties:
+        duration:
+          type: integer
+          format: int32
+          description: duration
+          example: 3
+        pin:
+          type: string
+          description: pin
+          example: 4521
+    VentilatorWebResponseResource:
+      required:
+        - id
+        - vin
+      type: object
+      properties:
+        id:
+          type: string
+          description: id
+          example: 1234
+        vin:
+          type: string
+          description: string
+          example: QMGAG8BEQSY003476
+    ProblemDetailResponseResource:
+      required:
+        - title
+        - status
+        - detail
+        - instance
+      properties:
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: Invalid vin
+        status:
+          type: integer
+          description: The HTTP status code generated by the origin server for this occurrence of the problem
+          example: 400
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+          example: Invalid vin, please check your vin
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem
+          example: /cooling
