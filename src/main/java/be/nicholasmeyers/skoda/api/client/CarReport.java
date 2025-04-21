@@ -16,10 +16,10 @@ public class CarReport {
     /**
      * Constructs a new {@link CarReport} object with the specified parameters.
      *
-     * @param climatisationState The current state of the car's climatisation system (e.g., "ON", "OFF").
+     * @param climatisationState    The current state of the car's climatisation system (e.g., "ON", "OFF").
      * @param climatisationDuration The total duration for which the climatisation system will run, in seconds.
-     * @param remainingClimateTime The remaining time for the climatisation system to run, in seconds.
-     * @param climateStatusCode An integer representing the status code of the climatisation system (e.g., error codes, success codes).
+     * @param remainingClimateTime  The remaining time for the climatisation system to run, in seconds.
+     * @param climateStatusCode     An integer representing the status code of the climatisation system (e.g., error codes, success codes).
      */
     CarReport(String climatisationState, Integer climatisationDuration, Integer remainingClimateTime, Integer climateStatusCode) {
         this.climatisationState = climatisationState;

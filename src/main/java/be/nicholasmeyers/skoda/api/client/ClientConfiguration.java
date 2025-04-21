@@ -16,16 +16,12 @@ public class ClientConfiguration {
     ClientConfiguration(String email, String password) {
         TokenService tokenService = new TokenService(email, password);
 
-        Interceptor authorizationInterceptor = new Interceptor() {
-            @NotNull
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request originalRequest = chain.request();
-                Request requestWithAuthorization = originalRequest.newBuilder()
-                        .header("Authorization", "Bearer " + tokenService.getToken())
-                        .build();
-                return chain.proceed(requestWithAuthorization);
-            }
+        Interceptor authorizationInterceptor = chain -> {
+            Request originalRequest = chain.request();
+            Request requestWithAuthorization = originalRequest.newBuilder()
+                    .header("Authorization", "Bearer " + tokenService.getToken())
+                    .build();
+            return chain.proceed(requestWithAuthorization);
         };
 
         OkHttpClient httpClient = new OkHttpClient.Builder()

@@ -19,12 +19,12 @@ public class CarCoolingTimer {
     /**
      * Constructs a new {@link CarCoolingTimer} object with the specified parameters.
      *
-     * @param id The unique identifier for the cooling timer.
-     * @param heaterMode The heater mode (e.g., "ON" or "OFF") for the timer.
+     * @param id                    The unique identifier for the cooling timer.
+     * @param heaterMode            The heater mode (e.g., "ON" or "OFF") for the timer.
      * @param timerProgrammedStatus A {@link Boolean} indicating whether the timer is programmed (true) or not (false).
-     * @param weekday The weekday when the timer is set, represented as an integer (e.g., 1 for Monday, 7 for Sunday).
-     * @param hour The hour of the day when the timer is set to trigger (0-23).
-     * @param minute The minute of the hour when the timer is set to trigger (0-59).
+     * @param weekday               The weekday when the timer is set, represented as an integer (e.g., 1 for Monday, 7 for Sunday).
+     * @param hour                  The hour of the day when the timer is set to trigger (0-23).
+     * @param minute                The minute of the hour when the timer is set to trigger (0-59).
      */
     CarCoolingTimer(Integer id, String heaterMode, Boolean timerProgrammedStatus, Integer weekday, Integer hour, Integer minute) {
         this.id = id;
