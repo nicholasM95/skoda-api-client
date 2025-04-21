@@ -52,7 +52,6 @@ public class CarStatus {
      * </p>
      *
      * @return An {@link Integer} representing the kilometers left by the car.
-     * @throws NoSuchElementException if the kilometer data or field cannot be found.
      */
     public Integer getKilometer() {
         CarData data = getData().stream()
