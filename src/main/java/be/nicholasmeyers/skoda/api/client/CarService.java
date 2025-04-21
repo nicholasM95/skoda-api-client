@@ -80,9 +80,10 @@ public class CarService {
      *
      * @param vin      The VIN of the car.
      * @param duration The duration to flash the lights (in seconds).
+     * @return The status of the request.
      * @throws RuntimeException If the duration exceeds the maximum allowed or if an error occurs.
      */
-    public void flash(String vin, Integer duration) {
+    public String flash(String vin, Integer duration) {
         if (duration > 30) {
             throw new RuntimeException("maximum duration is 30");
         }
@@ -93,7 +94,7 @@ public class CarService {
         flashWebRequestResource.setLongitude(location.getLongitude());
 
         try {
-            flashApi.flash(vin, flashWebRequestResource);
+            return flashApi.flash(vin, flashWebRequestResource).getStatus();
         } catch (ApiException e) {
             throw new RuntimeException(e);
         }
@@ -104,9 +105,10 @@ public class CarService {
      *
      * @param vin      The VIN of the car.
      * @param duration The duration to honk the horn (in seconds).
+     * @return The status of the request.
      * @throws RuntimeException If the duration exceeds the maximum allowed or if an error occurs.
      */
-    public void honk(String vin, Integer duration) {
+    public String honk(String vin, Integer duration) {
         if (duration > 30) {
             throw new RuntimeException("maximum duration is 30");
         }
@@ -117,7 +119,7 @@ public class CarService {
         honkWebRequestResource.setLongitude(location.getLongitude());
 
         try {
-            honkApi.honk(vin, honkWebRequestResource);
+            return honkApi.honk(vin, honkWebRequestResource).getStatus();
         } catch (ApiException e) {
             throw new RuntimeException(e);
         }

@@ -16,7 +16,7 @@ Add the Maven Dependency to your `pom.xml`
 <dependency>
     <groupId>be.nicholasmeyers</groupId>
     <artifactId>skoda-api-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -47,7 +47,7 @@ Make sure to replace `YOUR_CARS_VIN`, `YOUR_EMAIL`, and `YOUR_PASSWORD` with you
 ```
 String vin = "YOUR_CARS_VIN";
 CarService carService = new CarService("YOUR_EMAIL", "YOUR_PASSWORD");
-carService.flash(vin, 30);
+String status = carService.flash(vin, 30);
 ```
 
 ## Honk Car Horn
@@ -57,7 +57,7 @@ Make sure to replace `YOUR_CARS_VIN`, `YOUR_EMAIL`, and `YOUR_PASSWORD` with you
 ```
 String vin = "YOUR_CARS_VIN";
 CarService carService = new CarService("YOUR_EMAIL", "YOUR_PASSWORD");
-carService.honk(vin, 30);
+String status = carService.honk(vin, 30);
 ```
 
 ## Start Car Ventilator
