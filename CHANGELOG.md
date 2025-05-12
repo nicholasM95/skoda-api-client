@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/nicholasM95/skoda-api-client/compare/v1.2.0...v1.2.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.code.gson:gson to v2.13.1 ([acb0255](https://github.com/nicholasM95/skoda-api-client/commit/acb02558e319409189f76649b32b042dd261062e))
+* **deps:** update dependency jakarta.annotation:jakarta.annotation-api to v3 ([2cd3177](https://github.com/nicholasM95/skoda-api-client/commit/2cd31772867de288554a1121c6ce8ef636d5a2d7))
+
 # [1.2.0](https://github.com/nicholasM95/skoda-api-client/compare/v1.1.0...v1.2.0) (2025-04-22)
 
 
