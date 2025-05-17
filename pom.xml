@@ -6,7 +6,7 @@
 
     <groupId>be.nicholasmeyers</groupId>
     <artifactId>skoda-api-client</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2-SNAPSHOT</version>
 
     <name>skoda-api-client</name>
     <description>skoda-api-client</description>
