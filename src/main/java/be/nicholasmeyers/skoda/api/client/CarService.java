@@ -57,6 +57,24 @@ public class CarService {
     }
 
     /**
+     * Constructs a new CarService with the specified email and password for authentication and another server if you don't want to use the default.
+     *
+     * @param email    The email used for authentication.
+     * @param password The password used for authentication.
+     * @param server The server used as api.
+     */
+    public CarService(String email, String password, String server) {
+        ClientConfiguration clientConfiguration = new ClientConfiguration(email, password, server);
+        this.coolingApi = new CoolingApi(clientConfiguration.getApiClient());
+        this.flashApi = new FlashApi(clientConfiguration.getApiClient());
+        this.honkApi = new HonkApi(clientConfiguration.getApiClient());
+        this.locationApi = new LocationApi(clientConfiguration.getApiClient());
+        this.requestApi = new RequestApi(clientConfiguration.getApiClient());
+        this.statusApi = new StatusApi(clientConfiguration.getApiClient());
+        this.ventilatorApi = new VentilatorApi(clientConfiguration.getApiClient());
+    }
+
+    /**
      * Retrieves the cooling status for the car identified by the provided VIN (Vehicle Identification Number).
      *
      * @param vin The VIN of the car.

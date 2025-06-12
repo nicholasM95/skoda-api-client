@@ -16,7 +16,7 @@ Add the Maven Dependency to your `pom.xml`
 <dependency>
     <groupId>be.nicholasmeyers</groupId>
     <artifactId>skoda-api-client</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
@@ -99,4 +99,13 @@ Make sure to replace `YOUR_CARS_VIN`, `YOUR_EMAIL`, and `YOUR_PASSWORD` with you
 String vin = "YOUR_CARS_VIN";
 CarService carService = new CarService("YOUR_EMAIL", "YOUR_PASSWORD");
 CarStatus status = carService.getStatus(vin);
+```
+
+
+## Use Your Own Server
+Use the `CarService` to retrieve information of your Škoda vehicle.
+Make sure to replace `YOUR_EMAIL`, `YOUR_PASSWORD`, and `YOUR_SERVER` with your actual server and account credentials.
+
+```
+CarService carService = new CarService("YOUR_EMAIL", "YOUR_PASSWORD", "YOUR_SERVER");
 ```
