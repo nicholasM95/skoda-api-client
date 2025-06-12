@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/nicholasM95/skoda-api-client/compare/v1.2.1...v1.3.0) (2025-06-12)
+
+
+### Features
+
+* configure your own api server ([194d397](https://github.com/nicholasM95/skoda-api-client/commit/194d397946a4097ee66ef4fec7aeac46b5c8efc3))
+
+
+### Bug Fixes
+
+* **deps:** update dependency be.nicholasmeyers.skoda-connector:skoda-connector to v1.1.2 ([2c98ecb](https://github.com/nicholasM95/skoda-api-client/commit/2c98ecbdca70e374e14401e2ad03e57fcc383a56))
+* **deps:** update junit5 monorepo to v5.13.1 ([81c94ce](https://github.com/nicholasM95/skoda-api-client/commit/81c94cea1b0a543fb0bd6768932510a3859eacbc))
+
 ## [1.2.1](https://github.com/nicholasM95/skoda-api-client/compare/v1.2.0...v1.2.1) (2025-05-12)
 
 
