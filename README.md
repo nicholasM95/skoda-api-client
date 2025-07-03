@@ -16,7 +16,7 @@ Add the Maven Dependency to your `pom.xml`
 <dependency>
     <groupId>be.nicholasmeyers</groupId>
     <artifactId>skoda-api-client</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
