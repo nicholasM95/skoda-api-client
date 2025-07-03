@@ -733,10 +733,6 @@ components:
         - tsTssReceivedUtc
         - milCarCaptured
         - milCarSent
-        - value
-        - unit
-        - textId
-        - picId
       type: object
       properties:
         id:
