@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/nicholasM95/skoda-api-client/compare/v1.3.0...v1.3.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* resolve IllegalArgumentException on null values ([2ed1a86](https://github.com/nicholasM95/skoda-api-client/commit/2ed1a86d5dfd14961d1bb9590c350a18aa553ecd))
+* **deps:** update junit-framework monorepo to v5.13.2 ([81683fa](https://github.com/nicholasM95/skoda-api-client/commit/81683fa43452c0bf21e1cb63662b37866460646d))
+* **deps:** update okhttp monorepo to v5 ([e7b8c2f](https://github.com/nicholasM95/skoda-api-client/commit/e7b8c2fb4a0bf74d9eb9dd10f44e9a730f621b80))
+
 # [1.3.0](https://github.com/nicholasM95/skoda-api-client/compare/v1.2.1...v1.3.0) (2025-06-12)
 
 
