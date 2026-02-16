@@ -1,6 +1,5 @@
 package be.nicholasmeyers.skoda.api.client;
 
-import be.nicholasmeyers.skodaconnector.resource.Client;
 import be.nicholasmeyers.skodaconnector.resource.Tokens;
 import be.nicholasmeyers.skodaconnector.service.ConnectorService;
 
@@ -17,7 +16,7 @@ public class TokenService {
     }
 
     String getToken() {
-        Tokens tokens = connectorService.getTokens(Client.VWG, email, password);
+        Tokens tokens = connectorService.getTokens(email, password);
         return tokens.getAccessToken();
     }
 }

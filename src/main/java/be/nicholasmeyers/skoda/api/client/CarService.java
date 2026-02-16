@@ -233,7 +233,7 @@ public class CarService {
     public CarLocation getLocation(String vin) {
         try {
             LocationWebResponseResource location = locationApi.getLocation(vin);
-            return new CarLocation(location.getLatitude(), location.getLongitude());
+            return new CarLocation(location.getLatitude(), location.getLongitude(), location.getAddress());
         } catch (ApiException e) {
             throw new CarServiceException("Failed to get car location",  e.getMessage());
         }
