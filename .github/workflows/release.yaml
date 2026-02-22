@@ -49,7 +49,7 @@ jobs:
 
       - name: Install Semantic Release and plugins
         run: |
-          npm install semantic-release @semantic-release/exec @semantic-release/changelog @semantic-release/github
+          npm install semantic-release @semantic-release/exec @semantic-release/changelog @semantic-release/github conventional-changelog-conventionalcommits
 
       - name: Calculate next version
         run: |
