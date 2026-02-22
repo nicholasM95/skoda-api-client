@@ -3,10 +3,11 @@ const publish = ['@semantic-release/github'];
 const analyzeCommits = [
     {
         path: '@semantic-release/commit-analyzer',
+        preset: 'conventionalcommits',
         releaseRules: [
             { type: "feat", release: "minor" },
             { type: "fix", release: "patch" },
-            { type: "breaking", release: "major" },
+            { breaking: true, release: "major" },
             { type: "refactor", release: "patch" },
             { type: "chore", release: "patch" },
             { type: "docs", release: "patch" },
@@ -17,6 +18,7 @@ const analyzeCommits = [
 const generateNotes = [
     {
         path: '@semantic-release/release-notes-generator',
+        preset: 'conventionalcommits',
         writerOpts: {
             groupBy: "type",
             commitGroupsSort: ["breaking", "feat", "fix", "chore"],
