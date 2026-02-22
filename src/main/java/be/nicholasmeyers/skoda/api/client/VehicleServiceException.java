@@ -16,7 +16,7 @@ public class VehicleServiceException extends RuntimeException {
      * and the original message from the source of the error.
      *
      * @param message         a user-friendly message describing the exception.
-     * @param originalMessage the original message from the underlying system or service.
+     * @param originalMessage the original message from the underlying service.
      */
     public VehicleServiceException(String message, String originalMessage) {
         super(message);
@@ -24,7 +24,7 @@ public class VehicleServiceException extends RuntimeException {
     }
 
     /**
-     * Returns the original message from the underlying system or service that caused the exception.
+     * Returns the original message from the underlying service that caused the exception.
      *
      * @return the original error message.
      */
