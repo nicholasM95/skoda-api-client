@@ -1,3 +1,13 @@
+## [2.0.0](https://github.com/nicholasM95/skoda-api-client/compare/v1.4.0...v2.0.0) (2026-02-22)
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to new skoda api
+
+### Features
+
+* upgrade to new skoda api ([867b1a3](https://github.com/nicholasM95/skoda-api-client/commit/867b1a332108dd8300e69fba1a5145c45720ef67))
+
 ## [1.4.0](https://github.com/nicholasM95/skoda-api-client/compare/v1.3.1...v1.4.0) (2026-02-22)
 
 ### Features
