@@ -1,3 +1,18 @@
+## [1.4.0](https://github.com/nicholasM95/skoda-api-client/compare/v1.3.1...v1.4.0) (2026-02-22)
+
+### Features
+
+* return car location address ([b3e3b8b](https://github.com/nicholasM95/skoda-api-client/commit/b3e3b8b97ef7f1563bb01453759a4af2f797d7af))
+
+### Bug Fixes
+
+* **deps:** update dependency be.nicholasmeyers.skoda-connector:skoda-connector to v1.1.4 ([1dd160c](https://github.com/nicholasM95/skoda-api-client/commit/1dd160c7269259d66ba4842c5ec0dbff58a02183))
+* **deps:** update dependency com.google.code.gson:gson to v2.13.2 ([2a21ff1](https://github.com/nicholasM95/skoda-api-client/commit/2a21ff1b42c89f9464850c399a9f1c20ccd7223d))
+* **deps:** update junit-framework monorepo to v5.14.1 ([acf66aa](https://github.com/nicholasM95/skoda-api-client/commit/acf66aa193f1184173c765ea38a05dac2a662a8a))
+* **deps:** update junit-framework monorepo to v5.14.3 ([642e875](https://github.com/nicholasM95/skoda-api-client/commit/642e8758d6602c9a90ae0bf4b1818abf47459fe8))
+* **deps:** update junit-framework monorepo to v6 ([32ea0fd](https://github.com/nicholasM95/skoda-api-client/commit/32ea0fddb162cbfa044d4313fc9eb96dc4991b7f))
+* **deps:** update okhttp monorepo to v5.3.2 ([9ff39d8](https://github.com/nicholasM95/skoda-api-client/commit/9ff39d830a7cef6557a1aea1d5915bde902a670e))
+
 ## [1.3.1](https://github.com/nicholasM95/skoda-api-client/compare/v1.3.0...v1.3.1) (2025-07-03)
 
 
