@@ -1,3 +1,9 @@
+## [2.1.0](https://github.com/nicholasM95/skoda-api-client/compare/v2.0.0...v2.1.0) (2026-02-23)
+
+### Features
+
+* add charging functionality ([9d7491a](https://github.com/nicholasM95/skoda-api-client/commit/9d7491a1ab6c9478387aa871e31f9ad84ed4b7d5))
+
 ## [2.0.0](https://github.com/nicholasM95/skoda-api-client/compare/v1.4.0...v2.0.0) (2026-02-22)
 
 ### ⚠ BREAKING CHANGES
