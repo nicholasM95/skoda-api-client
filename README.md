@@ -1,6 +1,6 @@
 # Škoda API Client
 This project offers a streamlined and reliable way to interact with Škoda vehicles through the Volkswagen Group's connected services.
-It simplifies authentication and token management, enabling developers to easily access vehicle data and remotely control features such as air conditioning.
+It simplifies authentication and token management, enabling developers to easily access vehicle data and remotely control features such as air conditioning and charging.
 Whether you're building apps, tools, or custom integrations, this client is your starting point for working with Škoda's digital ecosystem.
 
 > **Disclaimer:** This client is `unofficial` and not affiliated with or endorsed by Škoda Auto or the Volkswagen Group.
@@ -12,7 +12,7 @@ To utilize the library in your Maven project, add the following dependency to yo
 <dependency>
     <groupId>be.nicholasmeyers</groupId>
     <artifactId>skoda-api-client</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
 </dependency>
 ```
 
@@ -72,6 +72,40 @@ Make sure to replace `YOUR_CARS_VIN`, `YOUR_EMAIL`, and `YOUR_PASSWORD` with you
 ```java
 VehicleService vehicleService = new VehicleService("YOUR_EMAIL", "YOUR_PASSWORD");
 vehicleService.stopVehicleAirConditioning("YOUR_CARS_VIN");
+```
+
+## Get Vehicle Charging State
+Use the `VehicleService` to retrieve the current charging state of your Škoda vehicle.
+This includes the charging rate, charge power, remaining time to fully charged, charging state, charge type, remaining cruising range, and the current state of charge.
+Make sure to replace `YOUR_CARS_VIN`, `YOUR_EMAIL`, and `YOUR_PASSWORD` with your actual vehicle VIN and account credentials.
+```java
+VehicleService vehicleService = new VehicleService("YOUR_EMAIL", "YOUR_PASSWORD");
+VehicleChargingState chargingState = vehicleService.getVehicleChargingState("YOUR_CARS_VIN");
+```
+
+## Get Vehicle Charging Sessions
+Use the `VehicleService` to retrieve the charging session history of your Škoda vehicle.
+Each session includes the start time, energy charged in kWh, duration in minutes, and the type of current used.
+Make sure to replace `YOUR_CARS_VIN`, `YOUR_EMAIL`, and `YOUR_PASSWORD` with your actual vehicle VIN and account credentials.
+```java
+VehicleService vehicleService = new VehicleService("YOUR_EMAIL", "YOUR_PASSWORD");
+List<VehicleChargingSession> sessions = vehicleService.getVehicleChargingSessions("YOUR_CARS_VIN");
+```
+
+## Start Charging
+Use the `VehicleService` to start charging your Škoda vehicle.
+Make sure to replace `YOUR_CARS_VIN`, `YOUR_EMAIL`, and `YOUR_PASSWORD` with your actual vehicle VIN and account credentials.
+```java
+VehicleService vehicleService = new VehicleService("YOUR_EMAIL", "YOUR_PASSWORD");
+vehicleService.startCharging("YOUR_CARS_VIN");
+```
+
+## Stop Charging
+Use the `VehicleService` to stop the active charging session of your Škoda vehicle.
+Make sure to replace `YOUR_CARS_VIN`, `YOUR_EMAIL`, and `YOUR_PASSWORD` with your actual vehicle VIN and account credentials.
+```java
+VehicleService vehicleService = new VehicleService("YOUR_EMAIL", "YOUR_PASSWORD");
+vehicleService.stopCharging("YOUR_CARS_VIN");
 ```
 
 ## Use Your Own Server
