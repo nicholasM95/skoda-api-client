@@ -2,12 +2,15 @@ package be.nicholasmeyers.skoda.api.client;
 
 import be.nicholasmeyers.skoda.ApiException;
 import be.nicholasmeyers.skoda.client.AirConditioningApi;
+import be.nicholasmeyers.skoda.client.ChargingApi;
 import be.nicholasmeyers.skoda.client.LocationApi;
 import be.nicholasmeyers.skoda.client.RangeApi;
 import be.nicholasmeyers.skoda.client.StatusApi;
 import be.nicholasmeyers.skoda.client.VehicleApi;
 import be.nicholasmeyers.skoda.client.resource.AirConditioningWebRequestResource;
 import be.nicholasmeyers.skoda.client.resource.AirConditioningWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.ChargingSessionWebResponseResource;
+import be.nicholasmeyers.skoda.client.resource.ChargingStatusWebResponseResource;
 import be.nicholasmeyers.skoda.client.resource.LocationWebResponseResource;
 import be.nicholasmeyers.skoda.client.resource.RangeWebResponseResource;
 import be.nicholasmeyers.skoda.client.resource.StatusWebResponseResource;
@@ -34,6 +37,7 @@ public class VehicleService {
     private final StatusApi statusApi;
     private final RangeApi rangeApi;
     private final AirConditioningApi airConditioningApi;
+    private final ChargingApi chargingApi;
 
     /**
      * Constructs a new {@code VehicleService} using the default server configuration.
@@ -48,6 +52,7 @@ public class VehicleService {
         this.statusApi = new StatusApi(clientConfiguration.getApiClient());
         this.rangeApi = new RangeApi(clientConfiguration.getApiClient());
         this.airConditioningApi = new AirConditioningApi(clientConfiguration.getApiClient());
+        this.chargingApi = new ChargingApi(clientConfiguration.getApiClient());
     }
 
     /**
@@ -68,6 +73,7 @@ public class VehicleService {
         this.statusApi = new StatusApi(clientConfiguration.getApiClient());
         this.rangeApi = new RangeApi(clientConfiguration.getApiClient());
         this.airConditioningApi = new AirConditioningApi(clientConfiguration.getApiClient());
+        this.chargingApi = new ChargingApi(clientConfiguration.getApiClient());
     }
 
     /**
@@ -190,6 +196,78 @@ public class VehicleService {
             airConditioningApi.stopAirConditioning(vin);
         } catch (ApiException e) {
             throw new VehicleServiceException("Failed to stop vehicle air conditioning", e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the current charging state of a vehicle.
+     *
+     * @param vin the Vehicle Identification Number of the vehicle.
+     * @return a {@link VehicleChargingState} containing details such as charging rate, charge power,
+     *         remaining time to fully charge, charging state, charge type, remaining cruising range,
+     *         and the current state of charge.
+     * @throws VehicleServiceException if the API call fails.
+     */
+    public VehicleChargingState getVehicleChargingState(String vin) {
+        try {
+            ChargingStatusWebResponseResource chargingStatus = chargingApi.getChargingStatus(vin);
+            return new VehicleChargingState(chargingStatus.getChargingRateInKilometersPerHour(),
+                    chargingStatus.getChargePowerInKw(),
+                    chargingStatus.getRemainingTimeToFullyChargedInMinutes(),
+                    chargingStatus.getState(),
+                    chargingStatus.getChargeType(),
+                    chargingStatus.getRemainingCruisingRangeInMeters(),
+                    chargingStatus.getStateOfChargeInPercent(),
+                    chargingStatus.getCarCapturedTimestamp());
+        } catch (ApiException e) {
+            throw new VehicleServiceException("Failed to get vehicle charging state", e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the charging session history of a vehicle.
+     *
+     * @param vin the Vehicle Identification Number of the vehicle.
+     * @return a list of {@link VehicleChargingSession} objects, each containing details such as
+     *         start time, energy charged in kWh, duration in minutes, and current type.
+     * @throws VehicleServiceException if the API call fails.
+     */
+    public List<VehicleChargingSession> getVehicleChargingSessions(String vin) {
+        try {
+            List<ChargingSessionWebResponseResource> sessions = chargingApi.getChargingSession(vin);
+            return sessions.stream()
+                    .map(session -> new VehicleChargingSession(
+                            session.getStartAt(), session.getChargedInKWh(), session.getDurationInMinutes(), session.getCurrentType())).toList();
+        } catch (ApiException e) {
+            throw new VehicleServiceException("Failed to get vehicle charging sessions", e.getMessage());
+        }
+    }
+
+    /**
+     * Starts a charging session for a vehicle.
+     *
+     * @param vin the Vehicle Identification Number of the vehicle.
+     * @throws VehicleServiceException if the API call fails.
+     */
+    public void startCharging(String vin) {
+        try {
+            chargingApi.startCharging(vin);
+        } catch (ApiException e) {
+            throw new VehicleServiceException("Failed to start charging", e.getMessage());
+        }
+    }
+
+    /**
+     * Stops the active charging session of a vehicle.
+     *
+     * @param vin the Vehicle Identification Number of the vehicle.
+     * @throws VehicleServiceException if the API call fails.
+     */
+    public void stopCharging(String vin) {
+        try {
+            chargingApi.stopCharging(vin);
+        } catch (ApiException e) {
+            throw new VehicleServiceException("Failed to stop charging", e.getMessage());
         }
     }
 

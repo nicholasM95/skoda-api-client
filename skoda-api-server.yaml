@@ -15,6 +15,8 @@ tags:
     description: range
   - name: air-conditioning
     description: air conditioning
+  - name: charging
+    description: charging
 paths:
   /location/{vin}:
     get:
@@ -37,8 +39,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LocationWebResponseResource'
-        404:
-          description: Not found
+        500:
+          description: API Error
           content:
             application/json:
               schema:
@@ -64,8 +66,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatusWebResponseResource'
-        404:
-          description: Not found
+        500:
+          description: API Error
           content:
             application/json:
               schema:
@@ -85,8 +87,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/VehicleWebResponseResource'
-        404:
-          description: Not found
+        500:
+          description: API Error
           content:
             application/json:
               schema:
@@ -112,8 +114,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RangeWebResponseResource'
-        404:
-          description: Not found
+        500:
+          description: API Error
           content:
             application/json:
               schema:
@@ -139,8 +141,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AirConditioningWebResponseResource'
-        404:
-          description: Not found
+        500:
+          description: API Error
           content:
             application/json:
               schema:
@@ -168,8 +170,8 @@ paths:
       responses:
         202:
           description: Request successfully processed
-        404:
-          description: Not found
+        500:
+          description: API Error
           content:
             application/json:
               schema:
@@ -191,8 +193,110 @@ paths:
       responses:
         202:
           description: Request successfully processed
-        404:
-          description: Not found
+        500:
+          description: API Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /charging/{vin}:
+    get:
+      tags:
+        - charging
+      operationId: getChargingStatus
+      summary: Get charging status
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      responses:
+        200:
+          description: Request successfully processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingStatusWebResponseResource'
+        500:
+          description: Api Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /charging/{vin}/session:
+    get:
+      tags:
+        - charging
+      operationId: getChargingSession
+      summary: Get charging sessions
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      responses:
+        200:
+          description: Request successfully processed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChargingSessionWebResponseResource'
+        500:
+          description: Api Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /charging/{vin}/start:
+    post:
+      tags:
+        - charging
+      operationId: startCharging
+      summary: start charging
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      responses:
+        202:
+          description: Request successfully processed
+        500:
+          description: Api Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailResponseResource'
+  /charging/{vin}/stop:
+    post:
+      tags:
+        - charging
+      operationId: stopCharging
+      summary: stop charging
+      parameters:
+        - name: vin
+          in: path
+          description: vehicle vin
+          required: true
+          schema:
+            type: string
+            example: QMGAG8BEQSY003476
+      responses:
+        202:
+          description: Request successfully processed
+        500:
+          description: Api Error
           content:
             application/json:
               schema:
@@ -343,6 +447,55 @@ components:
           type: string
           description: target temperature unit
           example: CELSIUS
+    ChargingStatusWebResponseResource:
+      required:
+        - chargingRateInKilometersPerHour
+        - chargePowerInKw
+        - remainingTimeToFullyChargedInMinutes
+        - state
+        - chargeType
+        - remainingCruisingRangeInMeters
+        - stateOfChargeInPercent
+        - carCapturedTimestamp
+      properties:
+        chargingRateInKilometersPerHour:
+          type: number
+          format: double
+        chargePowerInKw:
+          type: number
+          format: double
+        remainingTimeToFullyChargedInMinutes:
+          type: integer
+          format: int32
+        state:
+          type: string
+        chargeType:
+          type: string
+        remainingCruisingRangeInMeters:
+          type: integer
+          format: int32
+        stateOfChargeInPercent:
+          type: integer
+          format: int32
+        carCapturedTimestamp:
+          type: string
+    ChargingSessionWebResponseResource:
+      required:
+        - startAt
+        - chargedInKWh
+        - durationInMinutes
+        - currentType
+      properties:
+        startAt:
+          type: string
+        chargedInKWh:
+          type: number
+          format: double
+        durationInMinutes:
+          type: integer
+          format: int32
+        currentType:
+          type: string
     ProblemDetailResponseResource:
       required:
         - title
